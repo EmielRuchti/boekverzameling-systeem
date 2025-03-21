@@ -15,12 +15,16 @@ a {
     font-weight: 500;
     color: #646cff;
     margin-left: 10px;
-    border: 2px solid #000;
     padding: 10px;
 }
 a:hover {
     color: blue;
 }
+
+nav a {
+    border: 2px solid #000;
+}
+
 nav {
     margin-bottom: 10px;
     padding: 10px;

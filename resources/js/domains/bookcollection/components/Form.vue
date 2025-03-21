@@ -1,4 +1,6 @@
 <script setup>
+import {getAllAuthors} from '../../authors/store';
+
 const {book} = defineProps({
     book: Object,
 });
@@ -9,6 +11,8 @@ const emit = defineEmits(['newBook']);
 const submitForm = () => {
     emit('newBook', newBook);
 };
+
+const authors = getAllAuthors;
 </script>
 
 <template>
@@ -17,21 +21,25 @@ const submitForm = () => {
             <label for="title">Title</label>
             <input
                 v-model="newBook.title"
-                type="title"
+                type="text"
                 id="title"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
             />
         </div>
         <div class="mb-5">
-            <label for="author">Author</label>
-            <input
-                v-model="newBook.author"
-                type="author"
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                Select Author
+            </label>
+            <select
+                v-model="newBook.author_id"
                 id="author"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-            />
+            >
+                <option v-for="(author, index) in authors" :key="index" :value="author.id">
+                    {{ author.name }}
+                </option>
+            </select>
         </div>
         <button
             type="submit"

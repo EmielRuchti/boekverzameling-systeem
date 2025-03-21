@@ -1,12 +1,13 @@
 <script setup>
 import Form from './../components/Form.vue';
 import {useRouter} from 'vue-router';
-import {addBook} from '../store';
+import {postBook} from '../store';
 
-const book = {title: '', author: ''};
+const book = {title: '', author_id: ''};
 const router = useRouter();
-const handleBook = book => {
-    addBook(book);
+// @ts-ignore
+const handleBook = async book => {
+    await postBook(book);
     router.push({path: '/'});
 };
 </script>
