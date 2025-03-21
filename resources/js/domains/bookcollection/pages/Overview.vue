@@ -2,8 +2,9 @@
 import {removeBook, fetchBooks, getAllBooks} from '../store';
 import {fetchAuthors, getAuthorById} from '../../authors/store';
 
-fetchBooks();
 fetchAuthors();
+fetchBooks();
+
 const books = getAllBooks;
 </script>
 
