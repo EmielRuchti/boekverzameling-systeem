@@ -25,7 +25,7 @@ const books = getAllBooks;
                 <td>{{ book.title }}</td>
                 <td>{{ getAuthorById(book.author_id).value.name }}</td>
                 <td><RouterLink :to="{name: 'edit', params: {id: book.id}}">Bewerk</RouterLink></td>
-                <td><a href="" class="button" @click="removeBook(index, book)">Verwijder</a></td>
+                <td><a class="button" @click="removeBook(index, book)">Verwijder</a></td>
             </tr>
         </tbody>
     </table>
