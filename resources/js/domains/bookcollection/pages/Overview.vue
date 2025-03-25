@@ -13,7 +13,6 @@ const books = getAllBooks;
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th colspan="2">Acties</th>
@@ -21,8 +20,9 @@ const books = getAllBooks;
         </thead>
         <tbody>
             <tr v-for="(book, index) in books" :key="index">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
+                <td>
+                    <RouterLink :to="{name: 'show', params: {id: book.id}}">{{ book.title }}</RouterLink>
+                </td>
                 <td>{{ getAuthorById(book.author_id).value.name }}</td>
                 <td><RouterLink :to="{name: 'edit', params: {id: book.id}}">Bewerk</RouterLink></td>
                 <td><a class="button" @click="removeBook(index, book)">Verwijder</a></td>

@@ -16,5 +16,6 @@ const handleBook = async book => {
 </script>
 
 <template>
+    <h1>Edit:</h1>
     <Form :book="book" @newBook="handleBook"></Form>
 </template>

@@ -59,7 +59,7 @@ class BookController extends Controller
     public function update(StoreBookRequest $request, Book $book)
     {
         $validated = $request->validated();
-        $book = $book->update($validated);
+        $book->update($validated);
         return response()->json($book);
     }
 
