@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('body');
             $table->foreignId('book_id');
+            //$table->foreignId('book_id')->references('id')->on('books')->onDelete('cascade');
             $table->timestamps();
         });
     }

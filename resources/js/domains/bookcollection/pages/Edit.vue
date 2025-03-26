@@ -1,15 +1,15 @@
-<script setup>
+<script setup lang="ts">
 import Form from './../components/Form.vue';
 import {useRoute, useRouter} from 'vue-router';
 import {getBookById, putBook} from '../store';
+import {Book} from '../components/types';
 
 const route = useRoute();
 const router = useRouter();
-// @ts-ignore
-const book = getBookById(route.params.id);
+const book: any = getBookById(route.params.id);
 
 // @ts-ignore
-const handleBook = async book => {
+const handleBook = async (book: Book) => {
     await putBook(book);
     router.push({path: '/'});
 };

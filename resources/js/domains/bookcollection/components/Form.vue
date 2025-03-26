@@ -18,7 +18,7 @@ const authors = getAllAuthors;
 <template>
     <form @submit.prevent="submitForm" class="max-w-sm mx-auto">
         <div class="mb-5">
-            <label for="title">Title</label>
+            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
             <input
                 v-model="newBook.title"
                 type="text"

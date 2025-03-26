@@ -1,18 +1,16 @@
-<script setup>
+<script setup lang="ts">
 import ReviewForm from './../components/ReviewForm.vue';
 import {useRoute, useRouter} from 'vue-router';
 import {getBookById, getReviewbyId, putReview} from '../store';
+import {Review} from '../components/types';
 
 const route = useRoute();
 const router = useRouter();
 
-// @ts-ignore
-const book = getBookById(route.params.book_id);
-// @ts-ignore
+const book: any = getBookById(route.params.book_id);
 const review = getReviewbyId(route.params.review_id, book);
 
-// @ts-ignore
-const handleReview = async review => {
+const handleReview = async (review: Review) => {
     await putReview(review);
     router.push({name: 'show', params: {id: book.value.id}});
 };

@@ -1,13 +1,16 @@
 <script setup>
+import {ref} from 'vue';
+
 const {review} = defineProps({
     review: Object,
 });
 
-const newReview = Object.assign({}, review);
+const newReview = ref(Object.assign({}, review));
 
 const emit = defineEmits(['newReview']);
 const submitForm = () => {
-    emit('newReview', newReview);
+    emit('newReview', newReview.value);
+    newReview.value.body = '';
 };
 </script>
 

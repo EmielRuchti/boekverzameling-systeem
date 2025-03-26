@@ -2,8 +2,8 @@
 import {fetchAuthors} from './domains/authors/store';
 import {fetchBooks} from './domains/bookcollection/store';
 
-//fetchAuthors();
-//fetchBooks();
+fetchAuthors();
+fetchBooks();
 </script>
 
 <template>

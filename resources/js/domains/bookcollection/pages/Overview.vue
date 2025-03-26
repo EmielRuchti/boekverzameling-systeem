@@ -2,8 +2,8 @@
 import {removeBook, fetchBooks, getAllBooks} from '../store';
 import {fetchAuthors, getAuthorById} from '../../authors/store';
 
-fetchAuthors();
-fetchBooks();
+//fetchAuthors();
+//fetchBooks();
 
 const books = getAllBooks;
 </script>
