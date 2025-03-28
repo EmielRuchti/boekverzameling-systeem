@@ -1,6 +1,9 @@
 import axios from 'axios';
 import {ref, computed} from 'vue';
 import type {Author} from './components/types';
+import {storeModuleFactory} from '../factory/store';
+
+//export const authorStore = storeModuleFactory('authors');
 
 const authors = ref<Author[]>([]);
 

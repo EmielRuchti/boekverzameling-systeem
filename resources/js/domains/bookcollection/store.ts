@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ref, computed, Ref, ComputedRef} from 'vue';
+import {ref, computed} from 'vue';
 import type {Book} from './components/types';
 import type {Review} from '../reviews/components/types';
 
