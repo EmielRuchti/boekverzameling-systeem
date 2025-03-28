@@ -1,8 +1,5 @@
 <script setup>
-import {removeAuthor, getAllAuthors, fetchAuthors} from '../../authors/store';
-
-//fetchAuthors();
-
+import {deleteAuthor, getAllAuthors} from '../../authors/store';
 const authors = getAllAuthors;
 </script>
 
@@ -21,7 +18,7 @@ const authors = getAllAuthors;
                     {{ author.name }}
                 </td>
                 <td><RouterLink :to="{name: 'edit/authors', params: {id: author.id}}">Bewerk</RouterLink></td>
-                <td><a class="button" @click="removeAuthor(index, author)">Verwijder</a></td>
+                <td><a class="button" @click="deleteAuthor(author)">Verwijder</a></td>
             </tr>
         </tbody>
     </table>

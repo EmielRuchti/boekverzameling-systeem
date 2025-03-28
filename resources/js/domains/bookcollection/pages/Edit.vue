@@ -6,7 +6,7 @@ import {Book} from '../components/types';
 
 const route = useRoute();
 const router = useRouter();
-const book: any = getBookById(route.params.id);
+const book = getBookById(+route.params.id);
 
 // @ts-ignore
 const handleBook = async (book: Book) => {

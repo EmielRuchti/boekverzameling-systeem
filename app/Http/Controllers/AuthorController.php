@@ -33,7 +33,7 @@ class AuthorController extends Controller
     {
         $validated = $request->validated();
         $author = Author::create($validated);
-        return response()->json($author);
+        return new AuthorResource($author);
     }
 
     /**
@@ -59,7 +59,7 @@ class AuthorController extends Controller
     {
         $validated = $request->validated();
         $author->update($validated);
-        return response()->json($author);
+        return new AuthorResource($author);
     }
 
     /**

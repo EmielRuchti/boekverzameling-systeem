@@ -34,7 +34,7 @@ class BookController extends Controller
     {
         $validated = $request->validated();
         $book = Book::create($validated);
-        return response()->json($book);
+        return new BookResource($book);
     }
 
     /**
@@ -60,7 +60,7 @@ class BookController extends Controller
     {
         $validated = $request->validated();
         $book->update($validated);
-        return response()->json($book);
+        return new BookResource($book);
     }
 
     /**

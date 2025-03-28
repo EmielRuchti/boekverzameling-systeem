@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreReviewRequest;
+use App\Http\Resources\BookResource;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
@@ -31,7 +33,7 @@ class ReviewController extends Controller
     {
         $validated = $request->validated();
         $review = Review::create($validated);
-        return response()->json($review);
+        return new BookResource(Book::find($review->book_id));
     }
 
     /**
@@ -57,7 +59,7 @@ class ReviewController extends Controller
     {
         $validated = $request->validated();
         $review->update($validated);
-        return response()->json($review);
+        return new BookResource(Book::find($review->book_id));
     }
 
     /**
@@ -65,7 +67,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
+        $book_id = $review->book_id;
         $review->delete();
-        return response()->json();
+        return new BookResource(Book::find($book_id));
     }
 }

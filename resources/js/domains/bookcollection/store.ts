@@ -1,76 +1,64 @@
 import axios from 'axios';
 import {ref, computed, Ref, ComputedRef} from 'vue';
-import type {Book, Review} from './components/types';
+import type {Book} from './components/types';
+import type {Review} from '../reviews/components/types';
 
 const books = ref<Book[]>([]);
+
+const setAll = (items: []) => {
+    items.forEach((item: Book) => {
+        books.value[item.id] = item;
+    });
+};
 
 export const fetchBooks = async () => {
     const {data} = await axios.get('api/books');
     if (!data) return;
-    books.value = data;
+    setAll(data);
 };
 
 export const postBook = async (book: Book) => {
     const {data} = await axios.post('api/books', book);
     if (!data) return;
-    books.value.push(data);
+    books.value[data.id] = data;
 };
 
 export const putBook = async (book: Book) => {
     const {data} = await axios.put(`/api/books/${book.id}`, book);
     if (!data) return;
-    books.value[listBookIndex(book)] = data;
-};
-
-const listBookIndex = (book: Book) => {
-    for (const [index, item] of books.value.entries()) {
-        if (item.id == book.id) return index;
-    }
-    return 0;
+    books.value[book.id] = data;
 };
 
 export const deleteBook = async (book: Book) => {
-    const response = await axios.delete(`/api/books/${book.id}`);
+    const {data} = await axios.delete(`/api/books/${book.id}`);
+    if (!data) return;
+    delete books.value[book.id];
 };
 
-export const getAllBooks = computed(() => books.value);
-export const getBookById = (id: any) => computed(() => books.value.find((book: Book) => book.id == id));
-
-export const removeBook = async (id: number, book: Book) => {
-    await deleteBook(book);
-    books.value.splice(id, 1);
-};
+export const getAllBooks = computed(() => Object.values(books.value));
+export const getBookById = (id: number) => computed(() => books.value[id]);
 
 export const postReview = async (review: Review) => {
     const {data} = await axios.post('/api/reviews', review);
     if (!data) return;
-    const updateBook: any = getBookById(review.book_id);
-    updateBook.value.reviews.push(data);
+    books.value[data.id] = data;
 };
 
 export const putReview = async (review: Review) => {
     const {data} = await axios.put(`/api/reviews/${review.id}`, review);
     if (!data) return;
-    const updateBook: any = getBookById(review.book_id);
-    updateBook.value.reviews[listIndex(updateBook, review)] = data;
-};
-
-const listIndex = (book: Ref<Book>, review: Review) => {
-    for (const [index, item] of book.value.reviews.entries()) {
-        if (item.id == review.id) return index;
-    }
-    return 0;
+    books.value[data.id] = data;
 };
 
 export const deleteReview = async (review: Review) => {
-    const response = await axios.delete(`/api/reviews/${review.id}`);
+    const {data} = await axios.delete(`/api/reviews/${review.id}`);
+    if (!data) return;
+    books.value[data.id] = data;
 };
 
-export const removeReview = async (id: number, review: Review) => {
-    await deleteReview(review);
-    const updateBook: any = getBookById(review.book_id);
-    updateBook.value.reviews.splice(id, 1);
-};
-
-export const getReviewbyId = (id: any, book: Ref<Book>) =>
-    computed(() => book.value.reviews.find((currentReview: Review) => currentReview.id == id));
+export const getReviewbyId = (reviewId: number, bookId: number) =>
+    computed(() => {
+        const book = books.value[bookId];
+        if (!book) return;
+        return book.reviews.find(review => review.id == reviewId);
+    });
