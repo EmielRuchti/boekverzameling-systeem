@@ -1,6 +1,6 @@
-<script setup>
-import {deleteAuthor, getAllAuthors} from '../../authors/store';
-const authors = getAllAuthors;
+<script setup lang="ts">
+import {authorStore} from '../../authors/store';
+const authors: any = authorStore.getters.all;
 </script>
 
 <template>
@@ -18,7 +18,7 @@ const authors = getAllAuthors;
                     {{ author.name }}
                 </td>
                 <td><RouterLink :to="{name: 'edit/authors', params: {id: author.id}}">Bewerk</RouterLink></td>
-                <td><a class="button" @click="deleteAuthor(author)">Verwijder</a></td>
+                <td><a class="button" @click="authorStore.actions.deleteItemById(author.id)">Verwijder</a></td>
             </tr>
         </tbody>
     </table>

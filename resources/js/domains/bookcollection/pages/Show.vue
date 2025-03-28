@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import Form from './../../reviews/components/Form.vue';
 import {useRoute} from 'vue-router';
-import {getBookById, postReview, deleteReview} from '../store';
-import {getAuthorById} from '../../authors/store';
+import {bookStore, postReview, deleteReview} from '../store';
+import {authorStore} from '../../authors/store';
 import type {Review} from '../../reviews/components/types';
 
 const route = useRoute();
-const book = getBookById(+route.params.id);
+const book = bookStore.getters.byId(+route.params.id);
 const review = {body: '', book_id: route.params.id};
 
 const submitReview = async (review: Review) => {
@@ -19,7 +19,7 @@ const submitReview = async (review: Review) => {
         <h1 class="font-bold">Book title:</h1>
         - {{ book.title }}
         <h1 class="font-bold">Author:</h1>
-        - {{ getAuthorById(book.author_id).value.name }}
+        - {{ authorStore.getters.byId(book.author_id).value.name }}
         <h1 class="font-bold">Reviews:</h1>
         <div v-for="(review, index) in book.reviews" :key="index" class="border-2 border-solid p-5">
             <p>{{ review.body }}</p>

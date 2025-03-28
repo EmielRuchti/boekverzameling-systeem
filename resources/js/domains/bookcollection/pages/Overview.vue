@@ -1,8 +1,8 @@
-<script setup>
-import {deleteBook, getAllBooks} from '../store';
-import {getAuthorById} from '../../authors/store';
+<script setup lang="ts">
+import {bookStore} from '../store';
+import {authorStore} from '../../authors/store';
 
-const books = getAllBooks;
+const books: any = bookStore.getters.all;
 </script>
 
 <template>
@@ -21,9 +21,9 @@ const books = getAllBooks;
                     <td>
                         <RouterLink :to="{name: 'show', params: {id: book.id}}">{{ book.title }}</RouterLink>
                     </td>
-                    <td>{{ getAuthorById(book.author_id).value.name }}</td>
+                    <td>{{ authorStore.getters.byId(book.author_id).value.name }}</td>
                     <td><RouterLink :to="{name: 'edit', params: {id: book.id}}">Bewerk</RouterLink></td>
-                    <td><a class="button" @click="deleteBook(book)">Verwijder</a></td>
+                    <td><a class="button" @click="bookStore.actions.deleteItemById(book.id)">Verwijder</a></td>
                 </tr>
             </tbody>
         </table>

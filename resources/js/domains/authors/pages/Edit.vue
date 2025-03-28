@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import Form from '../components/Form.vue';
 import {useRoute, useRouter} from 'vue-router';
-import {getAuthorById, putAuthor} from '../store';
+import {authorStore} from '../store';
 import type {Author} from '../components/types';
 
 const route = useRoute();
 const router = useRouter();
-const author = getAuthorById(+route.params.id);
+const author = authorStore.getters.byId(+route.params.id);
 
 const handleAuthor = async (author: Author) => {
-    await putAuthor(author);
+    await authorStore.actions.update(author);
     router.push({path: '/authors'});
 };
 </script>

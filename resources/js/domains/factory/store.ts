@@ -54,5 +54,6 @@ export const storeModuleFactory = (moduleName: string) => {
     return {
         getters,
         actions,
+        setters,
     };
 };
