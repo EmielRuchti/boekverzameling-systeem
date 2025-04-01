@@ -23,6 +23,17 @@ class LoginController extends Controller
         return response()->json('The provided credentials do not match our records.', 401);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return response()->json(200);
+    }
+
     public function me(Request $request)
     {
         return response()->json(Auth::user(), 200);

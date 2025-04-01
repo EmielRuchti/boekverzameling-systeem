@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {goToRoute} from '../router';
 
 // We gebruiken een "baseURL" zodat we niet overal /api voor hoeven te zetten
 const baseURL = '/api';
@@ -12,6 +13,19 @@ const http = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+http.interceptors.response.use(
+    response => response,
+    error => {
+        const status = error.response ? error.response.status : null;
+        if (status === 401) {
+            alert(error.response.data.message);
+            goToRoute('login');
+        }
+
+        return Promise.reject(error);
+    },
+);
 
 /**
  * send a get request to the given endpoint

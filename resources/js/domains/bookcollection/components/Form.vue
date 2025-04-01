@@ -19,17 +19,18 @@ const authors: any = authorStore.getters.all;
     <div v-if="authors">
         <form @submit.prevent="submitForm" class="max-w-sm mx-auto">
             <div class="mb-5">
-                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title:</label>
                 <input
                     v-model="newBook.title"
                     type="text"
                     id="title"
+                    autocomplete="title"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required
                 />
             </div>
             <div class="mb-5">
-                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                <label for="author" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Select Author
                 </label>
                 <select

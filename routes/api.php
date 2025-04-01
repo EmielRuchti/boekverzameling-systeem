@@ -28,4 +28,5 @@ Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('revi
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate')->middleware('web');
-Route::get('/me', [LoginController::class, 'me'])->name('me')->middleware(['web','auth:sanctum']);;
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout')->middleware('web');
+Route::get('/me', [LoginController::class, 'me'])->name('me')->middleware(['web','auth:sanctum']);
