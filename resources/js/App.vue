@@ -1,9 +1,9 @@
 <script setup>
-import {fetchAuthors} from './domains/authors/store';
-import {fetchBooks} from './domains/bookcollection/store';
+import {authorStore} from './domains/authors/store';
+import {bookStore} from './domains/bookcollection/store';
 
-fetchAuthors();
-fetchBooks();
+authorStore.actions.getAll();
+bookStore.actions.getAll();
 </script>
 
 <template>
@@ -16,6 +16,7 @@ fetchBooks();
         <RouterLink to="/create">Nieuw Boek</RouterLink>
         <RouterLink to="/authors">Auteurs</RouterLink>
         <RouterLink to="/authors/create">Nieuw Auteur</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
     </nav>
     <RouterView />
 </template>

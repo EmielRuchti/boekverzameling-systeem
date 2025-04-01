@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,6 @@ Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::put('/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate')->middleware('web');
+Route::get('/me', [LoginController::class, 'me'])->name('me')->middleware(['web','auth:sanctum']);;

@@ -21,8 +21,8 @@ export const getRequest = (endpoint: string) => http.get(endpoint);
 /**
  * send a post request to the given endpoint with the given data
  */
-export const postRequest = (endpoint: string, data: JSON) => http.post(endpoint, data);
+export const postRequest = (endpoint: string, data: any) => http.post(endpoint, data);
 
-export const updateRequest = (endpoint: string, data: JSON) => http.put(endpoint, data);
+export const updateRequest = (endpoint: string, data: any) => http.put(endpoint, data);
 
 export const deleteRequest = (endpoint: string) => http.delete(endpoint);

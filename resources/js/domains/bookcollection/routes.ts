@@ -5,9 +5,9 @@ import Show from './pages/Show.vue';
 import EditReview from './../reviews/pages/Edit.vue';
 
 export const routes = [
-    {path: '/', component: Overview},
-    {path: '/edit/:id', component: Edit, name: 'edit'},
-    {path: '/create', component: Create},
-    {path: '/show/:id', component: Show, name: 'show'},
-    {path: '/edit/:book_id/review/:review_id', component: EditReview, name: 'edit/review'},
+    {name: '/', path: '/', component: Overview},
+    {name: 'edit', path: '/edit/:id', component: Edit},
+    {name: 'create', path: '/create', component: Create},
+    {name: 'show', path: '/show/:id', component: Show},
+    {name: 'edit/review', path: '/edit/:book_id/review/:review_id', component: EditReview},
 ];

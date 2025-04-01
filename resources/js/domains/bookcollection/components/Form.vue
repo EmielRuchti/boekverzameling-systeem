@@ -1,5 +1,5 @@
-<script setup>
-import {getAllAuthors} from '../../authors/store';
+<script setup lang="ts">
+import {authorStore} from '../../authors/store';
 
 const {book} = defineProps({
     book: Object,
@@ -12,7 +12,7 @@ const submitForm = () => {
     emit('newBook', newBook);
 };
 
-const authors = getAllAuthors;
+const authors: any = authorStore.getters.all;
 </script>
 
 <template>
