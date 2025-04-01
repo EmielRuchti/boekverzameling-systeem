@@ -16,6 +16,7 @@ bookStore.actions.getAll();
         <RouterLink to="/create">Nieuw Boek</RouterLink>
         <RouterLink to="/authors">Auteurs</RouterLink>
         <RouterLink to="/authors/create">Nieuw Auteur</RouterLink>
+        <RouterLink to="/login">Login</RouterLink>
     </nav>
     <RouterView />
 </template>

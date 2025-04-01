@@ -11,7 +11,7 @@ export const postReview = async (review: any) => {
 };
 
 export const putReview = async (review: any) => {
-    const {data} = await updateRequest('reviews', review);
+    const {data} = await updateRequest('reviews' + '/' + review.id, review);
     if (!data) return;
     bookStore.setters.setById(data);
 };

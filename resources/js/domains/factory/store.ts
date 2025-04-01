@@ -45,7 +45,7 @@ export const storeModuleFactory = (moduleName: string) => {
         },
 
         update: async (item: any) => {
-            const {data} = await updateRequest(moduleName, item);
+            const {data} = await updateRequest(moduleName + '/' + item.id, item);
             if (!data) return;
             setters.setById(data);
         },
