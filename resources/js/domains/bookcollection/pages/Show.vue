@@ -19,7 +19,7 @@ const submitReview = async (review: Review) => {
         <h1 class="font-bold">Book title:</h1>
         - {{ book.title }}
         <h1 class="font-bold">Author:</h1>
-        - {{ authorStore.getters.byId(book.author_id).value.name }}
+        - {{ authorStore.getters.byId(book.author_id).value?.name }}
         <h1 class="font-bold">Reviews:</h1>
         <div v-for="(review, index) in book.reviews" :key="index" class="border-2 border-solid p-5">
             <p>{{ review.body }}</p>

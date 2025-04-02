@@ -38,7 +38,7 @@ const getUser = async () => {
                     <td>
                         <RouterLink :to="{name: 'show', params: {id: book.id}}">{{ book.title }}</RouterLink>
                     </td>
-                    <td>{{ authorStore.getters.byId(book.author_id).value.name }}</td>
+                    <td>{{ authorStore.getters.byId(book.author_id).value?.name }}</td>
                     <td><RouterLink :to="{name: 'edit', params: {id: book.id}}">Bewerk</RouterLink></td>
                     <td><a class="button" @click="bookStore.actions.deleteItemById(book.id)">Verwijder</a></td>
                 </tr>
